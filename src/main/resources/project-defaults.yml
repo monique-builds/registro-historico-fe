@@ -1,0 +1,27 @@
+project:
+    stage: desarrollo
+    version: desarrollo
+    name: "Sistema de Información para la Gestión Educativa Salvadoreña"
+service:
+    
+    catalogo:
+        baseUrl: ${env.CATALOGO_BACKEND_URL}
+    seguridad:
+        baseUrl: ${env.SEGURIDAD_BACKEND_URL}
+    autogestion-web:
+        baseUrl: ${env.AUTOGESTION_FRONTEND_URL}
+    report-generator:
+        baseUrl: ${env.REPORT_GENERATOR_FRONTEND}
+java:
+    net:
+        preferIPv4Stack: true
+files:
+    tmp:
+        path: ${env.TMP_MEDIA_PATH}
+    media:
+        path: ${env.MEDIA_PATH}
+    allowed-size:
+        images: 5242880 
+        documents: 1048576010
+casServerLoginUrl: ${env.CAS_SERVER_LOGIN_URL}
+casServerUrlPrefix: ${env.CAS_SERVER_URL_PREFIX}

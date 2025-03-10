@@ -1,0 +1,182 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                >
+
+    <h:form id="form">
+        <f:passThroughAttribute name="autocomplete" value="off" />
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a
+                        href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.gestionIncorporacion}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">#{msg.solicutudIncorporacion}</li>
+            </ol>
+        </nav>
+
+        <p:outputPanel styleClass="panel-titulo-pagina">
+            <h2 class="page-header"><h:outputText value="#{msg.solicutudIncorporacion}"/></h2>
+            <div class="lineaHeader"><div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div></div>
+        </p:outputPanel>
+
+        <p:outputPanel id="itemDetail">
+            <div class="requeridos">
+                <h:outputText value="#{msg.textoCamposObligatorios}" />
+            </div>
+
+            <h:panelGroup>
+                <p:messages id="popupmsg" showDetail="true" globalOnly="false" for="popupmsg" closable="true" />
+                <p:outputPanel id="formularioIncorporacion">
+
+                    <p:fieldset>
+                        <!-- Información de contacto -->
+                        <p:fieldset legend="Información de contacto">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombre_solicitante">
+                                <h:outputLabel value="#{msg.nombreSolicitante}" for="input_nombre_solicitante"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_nombre_solicitante"
+                                                 styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.nombreSolicitante}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_fecha_recepcion">
+                                <h:outputLabel value="#{msg.fechaRecepcion}" for="input_fecha_recepcion"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:calendar id="input_fecha_recepcion" styleClass="form-control"
+                                                value="#{incorporacionBean.entidadEnEdicion.fechaRecepcion}"
+                                                pattern="dd/MM/yy" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_correo">
+                                <h:outputLabel value="#{msg.correoElectronico}" for="input_correo"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_correo" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.correoElectronico}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_telefono">
+                                <h:outputLabel value="#{msg.telefono}" for="input_telefono"
+                                               styleClass="col-sm-4 col-form-label" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.telefono}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Información del estudiante -->
+                        <p:fieldset legend="Información del estudiante">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombre_estudiante">
+                                <h:outputLabel value="#{msg.nombreCompleto}" for="input_nombre_estudiante"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_nombre_estudiante"
+                                                 styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.nombreEstudiante}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_municipio">
+                                <h:outputLabel value="#{msg.municipio}" for="input_municipio"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_municipio" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.municipio}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nacionalidad">
+                                <h:outputLabel value="#{msg.nacionalidad}" for="input_nacionalidad"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:selectOneMenu id="input_nacionalidad"
+                                                     value="#{incorporacionBean.entidadEnEdicion.incNacionalidad}"
+                                                     styleClass="form-control">
+                                        <f:selectItems value="#{incorporacionBean.comboNacionalidad.items}"
+                                                       var="nacionalidad" itemLabel="#{nacionalidad.nacNombre}"
+                                                       itemValue="#{nacionalidad}" />
+                                    </h:selectOneMenu>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_departamento">
+                                <h:outputLabel value="#{msg.departamento}" for="input_departamento"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:selectOneMenu id="input_departamento"
+                                                     value="#{incorporacionBean.entidadEnEdicion.departamento}"
+                                                     styleClass="form-control">
+                                        <f:selectItems value="#{incorporacionBean.listaDepartamentos}" var="dep"
+                                                       itemValue="#{dep.depPk}" itemLabel="#{dep.depNombre}" />
+                                    </h:selectOneMenu>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Información académica -->
+                        <p:fieldset legend="Información académica">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_institucion">
+                                <h:outputLabel value="#{msg.institucion}" for="input_institucion"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_institucion" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.institucion}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_grado_academico">
+                                <h:outputLabel value="#{msg.gradoAcademico}" for="input_grado_academico"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_grado_academico" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.gradoAcademico}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_pais_graduacion">
+                                <h:outputLabel value="#{msg.paisGraduacion}" for="input_pais_graduacion"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_pais_graduacion" styleClass="form-control"
+                                                 value="#{incorporacionBean.entidadEnEdicion.paisGraduacion}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_anio_titulo">
+                                <h:outputLabel value="#{msg.anioTitulo}" for="input_anio_titulo"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:inputNumber autocomplete="off" id="input_anio_titulo" styleClass="form-control"
+                                                   value="#{incorporacionBean.entidadEnEdicion.anioTitulo}" minValue="1900"
+                                                   maxValue="2100" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+                        <p:outputPanel styleClass="control-group">
+                            <p:outputPanel styleClass="float-right">
+                                <p:commandButton id="btnGuardar" value="#{msg.enviarSolicitud}"
+                                                 action="#{incorporacionBean.guardar()}" update="@form"
+                                                 styleClass="btn btn-primary" />
+                            </p:outputPanel>
+                        </p:outputPanel>
+                        <p:blockUI block="@form" trigger="btnGuardar" />
+                        <p:defaultCommand target="btnGuardar" scope="itemDetail" />
+                    </p:fieldset>
+
+
+                </p:outputPanel>
+            </h:panelGroup>
+        </p:outputPanel>
+
+        <h:panelGroup styleClass="volverLink" layout="block">
+            <p:commandLink value="#{msg.volver}" onclick="history.go(-1)" styleClass="btn btn-link" />
+        </h:panelGroup>
+    </h:form>
+</ui:composition>
