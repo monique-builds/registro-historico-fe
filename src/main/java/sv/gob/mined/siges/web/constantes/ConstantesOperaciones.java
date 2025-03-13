@@ -38,6 +38,8 @@ public class ConstantesOperaciones {
     public static final String MENU_ETIQUETAS = "HM1";
     public static final String MENU_RH_PAGINA = "HM2";
     public static final String MENU_INCORPORACIONES = "HM3";
+
+    public static final String EDITAR_DATOS_MARGINACION = "H11";
     
 
  }
