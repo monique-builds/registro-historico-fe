@@ -35,7 +35,7 @@
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_nombre_solicitante"
                                                  styleClass="form-control"
-                                                 value="#{marginacionBean.nombreSolicitante}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.nombreSolicitante}" />
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -44,7 +44,7 @@
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
                                     <p:calendar id="input_fecha_recepcion" styleClass="form-control"
-                                                value="#{marginacionBean.fechaRecepcion}" pattern="dd/MM/yy" />
+                                                value="#{marginacionBean.solicitudMarginacion.fechaRecepcion}" pattern="dd/MM/yy" />
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -53,7 +53,7 @@
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_correo" styleClass="form-control"
-                                                 value="#{marginacionBean.correoElectronico}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.correoElectronico}" />
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -62,7 +62,7 @@
                                                styleClass="col-sm-4 col-form-label" />
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control"
-                                                 value="#{marginacionBean.telefono}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.telefono}" />
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
@@ -75,7 +75,7 @@
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_nombre_estudiante"
                                                  styleClass="form-control"
-                                                 value="#{marginacionBean.nombreEstudiante}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.nombreEstudiante}" />
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -84,7 +84,7 @@
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_domicilio" styleClass="form-control"
-                                                 value="#{marginacionBean.domicilio}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.domicilio}" />
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>

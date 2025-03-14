@@ -22,6 +22,7 @@ public class ConstantesPaginas {
     public static final String MARGINACIONES = "marginaciones";
     public static final String CUADRO_NOTAS = "cuadroNotas";
     public static final String CERTIFICACIONES = "certificaciones";
+    public static final String GESTION_CERTIFICACION = "certificacion";
  
 
 

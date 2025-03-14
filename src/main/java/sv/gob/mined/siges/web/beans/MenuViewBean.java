@@ -55,7 +55,7 @@ public class MenuViewBean implements Serializable {
             submenu.addElement(item2);
 
             // Submenú para Certificaciones
-            item2 = new DefaultMenuItem(Etiquetas.getValue("certificaciones", locale), null, ConstantesPaginas.CERTIFICACIONES);
+            item2 = new DefaultMenuItem(Etiquetas.getValue("gestionCertificaciones", locale), null, ConstantesPaginas.CERTIFICACIONES);
             submenu.addElement(item2);
 
             if (submenu.getElements().size() > 0) {
@@ -63,7 +63,6 @@ public class MenuViewBean implements Serializable {
                 model.addElement(submenu);
             }
 
-            // Otros menús (ejemplo: gestión de etiquetas, páginas, incorporaciones, etc.)
             item2 = new DefaultMenuItem(Etiquetas.getValue("gestionEtiqueta", locale), null, ConstantesPaginas.GESTION_ETIQUETAS);
             model.addElement(item2);
 
