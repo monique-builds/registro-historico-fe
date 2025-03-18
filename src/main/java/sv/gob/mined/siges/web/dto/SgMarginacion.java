@@ -21,13 +21,10 @@
 
         private static final long serialVersionUID = 1L;
         private Long id;
-        // Campos para la información de contacto
         private String nombreSolicitante;
         private Date fechaRecepcion;
         private String correoElectronico;
         private String telefono;
-
-        // Campos para la información del estudiante
         private String nombreEstudiante;
         private String domicilio;
 
