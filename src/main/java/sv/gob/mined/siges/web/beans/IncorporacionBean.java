@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.omnifaces.cdi.Param;
 import sv.gob.mined.siges.web.constantes.ConstantesComponentesId;
 import sv.gob.mined.siges.web.constantes.ConstantesOperaciones;
+import sv.gob.mined.siges.web.dto.SgDocumento;
 import sv.gob.mined.siges.web.dto.SgIncorporacion;
 import sv.gob.mined.siges.web.dto.catalogo.SgDepartamento;
 import sv.gob.mined.siges.web.dto.catalogo.SgEstadoCivil;
@@ -54,6 +55,29 @@ public class IncorporacionBean implements Serializable {
     private SofisComboG<SgEstadoCivil> comboEstadoCivil;
     private SofisComboG<SgPais> comboPaisEmisor;
     private List<SgDepartamento> listaDepartamentos;
+    private List<SgDocumento> documentosSeleccionados = new ArrayList<>();
+    private List<SgDocumento> documentosDeIncorporacion = new ArrayList<>();
+
+    @PostConstruct
+    public void init() {
+        documentosDeIncorporacion = new ArrayList<>();
+        documentosDeIncorporacion.add(new SgDocumento(1L, "Título de Educación Media", "PDF"));
+        documentosDeIncorporacion.add(new SgDocumento(2L, "Certificados de Educación Media", "PDF"));
+        documentosDeIncorporacion.add(new SgDocumento(3L, "Traduccion de Certificación de titulo", "PDF"));
+        try {
+            soloLectura = editable != null ? !editable : soloLectura;
+            cargarCombos();
+
+            if (incId != null) {
+                this.actualizar(incorporacionClient.obtenerPorId(incId));
+            } else {
+                agregar();
+            }
+            validarAcceso();
+        } catch (Exception ex) {
+            // LOGGER.log(Level.SEVERE, null, ex);
+        }
+    }
 
     private LocalDate fechaRecepcion;
 
@@ -65,26 +89,9 @@ public class IncorporacionBean implements Serializable {
         this.fechaRecepcion = fechaRecepcion;
     }
 
-
     private Boolean soloLectura;
 
     public IncorporacionBean() {
-    }
-
-    @PostConstruct
-    public void init() {
-        try {
-            soloLectura = editable != null ? !editable : soloLectura;
-            cargarCombos();
-            if (incId != null) {
-                this.actualizar(incorporacionClient.obtenerPorId(incId));
-            } else {
-                agregar();
-            }
-            validarAcceso();
-        } catch (Exception ex) {
-            // LOGGER.log(Level.SEVERE, null, ex);
-        }
     }
 
     public void validarAcceso() {
@@ -155,7 +162,6 @@ public class IncorporacionBean implements Serializable {
         }
     }
 
-    // Método para cargar datos de prueba de nacionalidades
     private List<SgNacionalidad> cargarNacionalidadesMock() {
         List<SgNacionalidad> nacionalidades = new ArrayList<>();
         nacionalidades.add(new SgNacionalidad(1L, "Salvadoreño", 1));
@@ -171,7 +177,6 @@ public class IncorporacionBean implements Serializable {
         return nacionalidades;
     }
 
-    // Método para cargar datos de prueba de departamentos
     private List<SgDepartamento> cargarDepartamentosMock() {
         List<SgDepartamento> departamentos = new ArrayList<>();
         departamentos.add(new SgDepartamento(1L, "San Salvador"));
@@ -276,4 +281,61 @@ public class IncorporacionBean implements Serializable {
     public void setListaDepartamentos(List<SgDepartamento> listaDepartamentos) {
         this.listaDepartamentos = listaDepartamentos;
     }
+
+    public CatalogosRestClient getCatalogoClient() {
+        return catalogoClient;
+    }
+
+    public void setCatalogoClient(CatalogosRestClient catalogoClient) {
+        this.catalogoClient = catalogoClient;
+    }
+
+    public IncorporacionRestClient getIncorporacionClient() {
+        return incorporacionClient;
+    }
+
+    public void setIncorporacionClient(IncorporacionRestClient incorporacionClient) {
+        this.incorporacionClient = incorporacionClient;
+    }
+
+    public SessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    public void setSessionBean(SessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }
+
+    public Long getIncId() {
+        return incId;
+    }
+
+    public void setIncId(Long incId) {
+        this.incId = incId;
+    }
+
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    public List<SgDocumento> getDocumentosSeleccionados() {
+        return documentosSeleccionados;
+    }
+
+    public void setDocumentosSeleccionados(List<SgDocumento> documentosSeleccionados) {
+        this.documentosSeleccionados = documentosSeleccionados;
+    }
+
+    public List<SgDocumento> getDocumentosDeIncorporacion() {
+        return documentosDeIncorporacion;
+    }
+
+    public void setDocumentosDeIncorporacion(List<SgDocumento> documentosDeIncorporacion) {
+        this.documentosDeIncorporacion = documentosDeIncorporacion;
+    }
+
 }

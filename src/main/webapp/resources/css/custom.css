@@ -3419,3 +3419,7 @@ span.glyphicon.glyphicon-circle-arrow-right {
     background-color:#EDEC98;
     text-align: right;
 }
+
+.ocultar-icono .ui-icon {
+    display: none !important;
+}

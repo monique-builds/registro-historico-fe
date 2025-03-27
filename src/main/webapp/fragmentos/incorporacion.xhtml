@@ -159,6 +159,45 @@
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
+                        <!-- Fieldset para los documentos académicos -->
+                        <p:fieldset id="documentosIncorporacion" legend="#{msg.documentosIncorporacion}">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_documentos_incorporacion">
+                                <p:outputPanel styleClass="col-sm-12">
+                                    <p:dataTable id="listaDocumentos"
+                                                 rowSelectMode="checkbox"
+                                                 emptyMessage="#{msg.noHayResultados}"
+                                                 var="documento"
+                                                 selection="#{incorporacionBean.documentosSeleccionados}"
+                                                 value="#{incorporacionBean.documentosDeIncorporacion}"
+                                                 rowKey="#{documento.id}"
+                                                 style="margin-bottom:0;">
+
+
+
+                                        <!-- Columna de selección con checkboxes -->
+                                        <p:column selectionMode="multiple" style="width:16px; text-align:center;" />
+
+                                        <p:column headerText="#{msg.documentos}">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h:outputText styleClass="fw-bold" value="#{documento.nombreDocumento}" />
+                                                <p:fileUpload id="file_upload_#{documento.id}"
+                                                              mode="advanced" 
+                                                              dragDropSupport="true"
+                                                              label="Cargar archivo"
+                                                              uploadLabel="#{msg.confirmar}"
+                                                              update="listaDocumentos"
+                                                              cancelLabel="#{msg.cancelar}"
+                                                              auto="true"
+                                                              sizeLimit="10485760"
+                                                              allowTypes="/(\.|\/)(pdf|docx?|xlsx?|jpe?g|png)$/"
+                                                              styleClass="ocultar-icono"
+                                                              /> 
+                                            </div>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
                         <p:outputPanel styleClass="control-group">
                             <p:outputPanel styleClass="float-right">
                                 <p:commandButton id="btnGuardar" value="#{msg.enviarSolicitud}"
