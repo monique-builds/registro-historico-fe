@@ -20,6 +20,8 @@ public class SgEquivalencia implements Serializable {
     private String nombres;
     private String apellidos;
     private String paisEstudio;
+    private String correoElectronico;
+    private Integer telefono;
     private String gradoExtranjero;
     private Integer ultimoAnioEstudio;
     private String municipioResidencia;
@@ -123,6 +125,22 @@ public class SgEquivalencia implements Serializable {
 
     public void setConvenioHaya(Boolean convenioHaya) {
         this.convenioHaya = convenioHaya;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
     }
 
 

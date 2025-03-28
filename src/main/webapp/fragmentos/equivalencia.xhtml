@@ -1,9 +1,10 @@
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"                 
+                xmlns="http://www.w3.org/1999/xhtml"                 
+                xmlns:c="http://java.sun.com/jsp/jstl/core"                 
+                xmlns:f="http://java.sun.com/jsf/core"                 
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui">   
 
     <h:form id="form">
         <f:passThroughAttribute name="autocomplete" value="off"/>
@@ -27,7 +28,7 @@
                     <p:outputPanel id="formularioSolicitud">
 
                         <!-- Fieldset para la información de contacto -->
-                        <p:fieldset legend="Información de contacto de persona que realiza el trámite">
+                        <p:fieldset legend="#{msg.datosPersonales}">
                             <p:outputPanel styleClass="form-group row" id="fila_input_nombres_solicitante">
                                 <h:outputLabel value="#{msg.nombres}" for="input_nombres_solicitante" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
@@ -46,11 +47,29 @@
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nacionalidad">
+                                <h:outputLabel value="#{msg.nacionalidad}" for="input_nacionalidad" styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_nacionalidad" styleClass="form-control" 
+                                                 value="#{equivalenciaBean.entidadEnEdicion.nacionalidad}"
+                                                 required="true" requiredMessage="Nacionalidad requerida"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" id="fila_input_municipio">
+                                <h:outputLabel value="#{msg.municipioResidencia}" for="input_municipio" styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_municipio" styleClass="form-control" 
+                                                 value="#{equivalenciaBean.entidadEnEdicion.municipioResidencia}"
+                                                 required="true" requiredMessage="Nacionalidad requerida"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
                             <p:outputPanel styleClass="form-group row" id="fila_input_correo">
                                 <h:outputLabel value="#{msg.correoElectronico}" for="input_correo" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_correo" styleClass="form-control" 
-                                                 value="#{solicitudBean.entidadEnEdicion.correoElectronico}"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.correoElectronico}"
                                                  required="true" requiredMessage="Correo electrónico es requerido"/>
                                 </p:outputPanel>
                             </p:outputPanel>
@@ -59,35 +78,34 @@
                                 <h:outputLabel value="#{msg.telefono}" for="input_telefono" styleClass="col-sm-4 col-form-label"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control" 
-                                                 value="#{solicitudBean.entidadEnEdicion.telefono}"/>
+                                                 value="#{equivalenciaBean.entidadEnEdicion.telefono}"/>
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
 
                         <!-- Fieldset para la información de la persona que realiza el trámite -->
-                        <p:fieldset legend="Persona que realiza el trámite">
+                        <p:fieldset legend="#{msg.informacionAcademica}">
                             <p:outputPanel styleClass="form-group row" id="fila_input_pais_estudio">
                                 <h:outputLabel value="#{msg.paisEstudio}" for="input_pais_estudio" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_pais_estudio" styleClass="form-control" 
-                                                 value="#{solicitudBean.entidadEnEdicion.paisEstudio}"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.paisEstudio}"
                                                  required="true" requiredMessage="País de estudio es requerido"/>
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <p:outputPanel styleClass="form-group row" id="fila_input_institucion">
+                                <h:outputLabel value="#{msg.nombreInstitucionExtranjera}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_institucion" styleClass="form-control" 
+                                                 value="#{equivalenciaBean.entidadEnEdicion.institucionExtranjera}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
                             <p:outputPanel styleClass="form-group row" id="fila_input_grado_estudio">
                                 <h:outputLabel value="#{msg.gradoEstudio}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <h:inputText autocomplete="off" id="input_grado_estudio" styleClass="form-control" 
-                                                 value="#{solicitudBean.entidadEnEdicion.gradoEstudio}"/>
-                                </p:outputPanel>
-                            </p:outputPanel>
-
-                            <p:outputPanel styleClass="form-group row" id="fila_input_ciudad_estudio">
-                                <h:outputLabel value="#{msg.ciudadEstudio}" for="input_ciudad_estudio" styleClass="col-sm-4 col-form-label"/>
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_ciudad_estudio" styleClass="form-control" 
-                                                 value="#{solicitudBean.entidadEnEdicion.ciudadEstudio}"/>
+                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoExtranjero}"/>
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -95,14 +113,14 @@
                                 <h:outputLabel value="#{msg.anioTitulo}" for="input_anio_titulo" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <p:inputNumber autocomplete="off" id="input_anio_titulo" styleClass="form-control" 
-                                                   value="#{solicitudBean.entidadEnEdicion.anioTitulo}" 
+                                                   value="#{equivalenciaBean.entidadEnEdicion.ultimoAnioEstudio}" 
                                                    minValue="1900" maxValue="2100"
                                                    required="true" requiredMessage="Año de título es requerido"/>
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
 
-                        <!-- Fieldset con la información-->
+                        <!-- Fieldset con la información
                         <p:fieldset legend="Documentos Requeridos para la Solicitud de Equivalencia de Estudio">
                             <p><strong>PAÍSES SIN CONVENIO DE LA HAYA:</strong></p>
                             <ul>
@@ -122,10 +140,17 @@
                                 <li>Si la documentación está escrita en idioma extranjero, deberá ser traducida ante notario salvadoreño residente en nuestro país para que realice las diligencias de traducción.</li>
                                 <li>Presentar partida de nacimiento si es salvadoreño y, si es extranjero, presentar pasaporte vigente (original y copia).</li>
                             </ul>
-                        </p:fieldset>
+                        </p:fieldset>-->
 
                         <!-- Fieldset para seleccionar convenio -->
-                        <p:fieldset>
+                        <p:fieldset legend="#{msg.datosTramite}">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_grado_matricular">
+                                <h:outputLabel value="#{msg.gradoMatricular}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_gradoMatricular" styleClass="form-control" 
+                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoAMatricular}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
                             <p:outputPanel styleClass="form-group row" id="fila_input_convenio">
                                 <h:outputLabel value="#{msg.tieneConvenioHaya}" for="input_convenio" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
@@ -133,7 +158,7 @@
                                                       value="#{equivalenciaBean.entidadEnEdicion.convenioHaya}"
                                                       required="true" requiredMessage="Debe seleccionar una opción">
                                         <f:selectItems value="#{applicationBean.booleanValues}"/>
-                                        <p:ajax update="panelDocumentosContainer"/> <!-- Actualiza el contenedor principal -->
+                                        <p:ajax update="panelDocumentosContainer"/> 
                                     </p:selectOneRadio>
                                 </p:outputPanel>
                             </p:outputPanel>

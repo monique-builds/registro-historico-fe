@@ -33,22 +33,22 @@
 
                         <!-- Fieldset para la información de contacto -->
                         <p:fieldset legend="Información de contacto">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_nombre_solicitante">
-                                <h:outputLabel value="#{msg.nombreSolicitante}" for="input_nombre_solicitante"
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombres_solicitante">
+                                <h:outputLabel value="#{msg.nombres}" for="input_nombre_solicitante"
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombre_solicitante"
+                                    <h:inputText autocomplete="off" id="input_nombres_solicitante"
                                                  styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.nombreSolicitante}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.nombresSolicitante}" />
                                 </p:outputPanel>
                             </p:outputPanel>
-
-                            <p:outputPanel styleClass="form-group row" id="fila_input_fecha_recepcion">
-                                <h:outputLabel value="#{msg.fechaRecepcion}" for="input_fecha_recepcion"
+                            <p:outputPanel styleClass="form-group row" id="fila_input_apellidos_solicitante">
+                                <h:outputLabel value="#{msg.apellidos}" for="input_apellidos_solicitante"
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <p:calendar id="input_fecha_recepcion" styleClass="form-control"
-                                                value="#{marginacionBean.solicitudMarginacion.fechaRecepcion}" pattern="dd/MM/yy" />
+                                    <h:inputText autocomplete="off" id="input_apellidos_solicitante"
+                                                 styleClass="form-control"
+                                                 value="#{marginacionBean.solicitudMarginacion.apellidosSolicitante}" />
                                 </p:outputPanel>
                             </p:outputPanel>
 
@@ -73,13 +73,22 @@
 
                         <!-- Fieldset para la información del estudiante -->
                         <p:fieldset legend="Información del estudiante">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_nombre_estudiante">
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombreSegunPartidaMarginada">
                                 <h:outputLabel value="#{msg.nombreEstudiante}" for="input_nombre_estudiante"
                                                styleClass="col-sm-4 col-form-label obligatorio" />
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombre_estudiante"
+                                    <h:inputText autocomplete="off" id="input_nombreSegunPartidaMarginada"
                                                  styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.nombreEstudiante}" />
+                                                 value="#{marginacionBean.solicitudMarginacion.nombreSegunPartidaMarginada}" />
+                                </p:outputPanel>
+                            </p:outputPanel>
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombreSegunDocumentoAcademico">
+                                <h:outputLabel value="#{msg.nombreSegunDocumentosAcademicos}" for="input_nombre_estudiante"
+                                               styleClass="col-sm-4 col-form-label obligatorio" />
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_nombreSegunDocumentoAcademico"
+                                                 styleClass="form-control"
+                                                 value="#{marginacionBean.solicitudMarginacion.nombreSegunDocumentoAcademico}" />
                                 </p:outputPanel>
                             </p:outputPanel>
 

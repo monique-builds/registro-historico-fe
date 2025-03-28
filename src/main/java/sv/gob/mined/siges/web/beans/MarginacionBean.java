@@ -2,7 +2,6 @@ package sv.gob.mined.siges.web.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -38,14 +37,12 @@ public class MarginacionBean implements Serializable {
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile file = event.getFile();
         if (file != null) {
-            // Procesar el archivo subido
             byte[] contenido = file.getContents();
             String nombreArchivo = file.getFileName();
             String tipoArchivo = file.getContentType();
 
-            // Asignar el archivo al documento seleccionado
             if (!documentosSeleccionados.isEmpty()) {
-                SgDocumento documento = documentosSeleccionados.get(0); // O el que corresponda
+                SgDocumento documento = documentosSeleccionados.get(0); 
                 documento.setArchivo(contenido);
                 documento.setTipoDocumento(tipoArchivo);
             }
@@ -53,14 +50,12 @@ public class MarginacionBean implements Serializable {
     }
 
     public void guardarSolicitud() {
-        // Procesar la solicitud
         System.out.println("Solicitud guardada:");
-        System.out.println("Nombre del solicitante: " + solicitudMarginacion.getNombreSolicitante());
+        System.out.println("Nombre del solicitante: " + solicitudMarginacion.getNombresSolicitante());
         System.out.println("Correo Electrónico: " + solicitudMarginacion.getCorreoElectronico());
         System.out.println("Teléfono: " + solicitudMarginacion.getTelefono());
         System.out.println("Fecha de Recepción: " + solicitudMarginacion.getFechaRecepcion());
 
-        // Procesar los documentos seleccionados
         System.out.println("Documentos seleccionados: " + documentosSeleccionados.size());
         for (SgDocumento documento : documentosSeleccionados) {
             System.out.println("Documento: " + documento.getNombreDocumento());
