@@ -1,0 +1,139 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="form">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.inicio}</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">#{msg.cuadroNotas}</li>
+
+            </ol>
+        </nav>
+
+        <p:outputPanel styleClass="panel-titulo-pagina">
+            <h2 class="page-header">
+                <h:outputText value="#{msg.cuadroNotas}" />
+            </h2>
+
+            <div class="lineaHeader">
+                <div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div>
+            </div>
+        </p:outputPanel>
+
+        <h3><h:outputText value="#{msg.busqueda}"/></h3>
+        <p:panel header="#{msg.filtro}" toggleable="true" toggleSpeed="500" closeSpeed="500" styleClass="panel-filtro">
+            <p:outputPanel id="pnlSearch" styleClass="row">
+                <p:outputPanel styleClass="col-md-6">
+                    <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.nombresApellidos}" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9">
+                            <div class="ui-inputgroup">
+                                <h:inputText autocomplete="off" styleClass="form-control" 
+                                             style="display: inline-block;"
+                                             id="nombre_completo"
+                                             value="#{cuadroDeNotasBean.filtro.nombreCompleto}"
+                                             rendered="#{cuadroDeNotasBean.filtroNombreCompleto.nombreCompleto == null}"/>
+                                <h:inputText autocomplete="off" styleClass="form-control"
+                                             style="display: inline-block;"
+                                             disabled="true"
+                                             rendered="#{cuadroDeNotasBean.filtroNombreCompleto.nombreCompleto != null}"
+                                             value="#{cuadroDeNotasBean.filtroNombreCompleto.nombreCompleto}" />      
+                                <f:subview id="busquedaNombre">
+                                    <ui:include src="componentes/busquedaNombreComponente.xhtml" >   
+                                        <ui:param name="controllerParam" value="#{cuadroDeNotasBean}" />
+                                        <ui:param name="actionParam" value="filtroNombreCompletoSeleccionar" />
+                                        <ui:param name="filtroNombreCompleto" value="#{cuadroDeNotasBean.filtroNombreCompleto}" />
+                                    </ui:include>
+                                </f:subview>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                </p:outputPanel>
+
+                <p:outputPanel styleClass="col-md-6">
+                    <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.centroEducativo}" for="b_centroEducativo" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9">
+                            <h:inputText autocomplete="off" styleClass="form-control" id="b_centroEducativo"
+                                         value="#{cuadroDeNotasBean.filtro.centroEscolar}" />
+                        </p:outputPanel>
+                    </p:outputPanel>    
+                     <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.anio}" for="b_anio" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9">
+                            <h:inputText autocomplete="off" styleClass="form-control" id="b_anio"
+                                         value="#{cuadroDeNotasBean.filtro.anio}" />
+                        </p:outputPanel>
+                    </p:outputPanel>    
+
+                    <p:outputPanel styleClass="form-group row">
+                        <p:outputPanel styleClass="col-sm-9 offset-sm-3">
+                            <p:commandButton id="btnBuscar" value="#{msg.buscar}" styleClass="btn btn-primary" 
+                                             icon="glyphicon glyphicon-search" action="#{cuadroDeNotasBean.buscar()}" 
+                                             update="pnlResultado"/>
+                            <p:commandLink value="#{msg.limpiar}" action="#{cuadroDeNotasBean.limpiar()}" 
+                                           update="pnlSearch pnlResultado" immediate="true" 
+                                           styleClass="btn btn-link">
+                                <p:resetInput target="pnlSearch pnlResultado" />
+                            </p:commandLink>
+                            <p:defaultCommand target="btnBuscar" scope="pnlSearch"/>
+                            <p:blockUI block="@form" trigger="btnBuscar" />
+                        </p:outputPanel>
+                    </p:outputPanel>
+                </p:outputPanel>   
+
+            </p:outputPanel>
+        </p:panel>	
+
+        <p:outputPanel id="pnlResultado">
+            <p:dataTable id="cuadroNotas" 
+                         value="#{cuadroDeNotasBean.cuadroNotas}" 
+                         var="nota"
+                         emptyMessage="No hay registros de cuadros de notas"
+                         >
+
+                <!-- Columna Nombre -->
+                <p:column headerText="Nombre" sortBy="#{nota.estudianteFK.nombres}">
+                    <h:outputText value="#{nota.estudianteFK.nombres}" />
+                </p:column>
+
+                <!-- Columna Apellidos -->
+                <p:column headerText="Apellidos" sortBy="#{nota.estudianteFK.apellidos}">
+                    <h:outputText value="#{nota.estudianteFK.apellidos}" />
+                </p:column>
+
+                <!-- Columna Centro Escolar -->
+                <p:column headerText="Centro Escolar" sortBy="#{nota.centroEscolarFK.nombreCentroEscolar}">
+                    <h:outputText value="#{nota.centroEscolarFK.nombreCentroEscolar}" />
+                </p:column>
+
+                <!-- Columna Año -->
+                <p:column headerText="Año" sortBy="#{nota.anio}">
+                    <h:outputText value="#{nota.anio}" />
+                </p:column>
+
+                <!-- Columna Archivo -->
+                <p:column headerText="Archivo">
+                    <h:outputText value="#{nota.archivo.achNombre}" />
+                </p:column>
+
+                <!-- Columna Consultar -->
+                <p:column headerText="Consultar" style="text-align:center">
+                    <p:commandButton icon="ui-icon-search" 
+                                     styleClass="btn btn-sm btn-info"
+                                     title="Consultar"
+                                     >
+                        <f:ajax execute="@this" render="@form" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+        </p:outputPanel>                                                                                                                                                                                                                
+
+    </h:form>
+</ui:composition>

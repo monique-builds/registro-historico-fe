@@ -7,21 +7,20 @@ package sv.gob.mined.siges.web.dto;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
  * @author tiffa
  */
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = SgDocumento.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = SgDocumento.class)
 public class SgDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nombreDocumento;
-    private String tipoDocumento; 
-    private byte[] archivo; 
+    private String tipoDocumento;
+    private byte[] archivo;
 
     // Constructor
     public SgDocumento(Long id, String nombreDocumento, String tipoDocumento) {
@@ -68,23 +67,16 @@ public class SgDocumento implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final SgDocumento other = (SgDocumento) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        SgDocumento that = (SgDocumento) obj;
+        return id != null && id.equals(that.id);
     }
-     @Override
+
+    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
 }
