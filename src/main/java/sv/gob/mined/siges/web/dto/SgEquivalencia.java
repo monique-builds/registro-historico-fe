@@ -16,7 +16,7 @@ import java.util.Date;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "resolucionId", scope = SgCertificacion.class)
 public class SgEquivalencia implements Serializable {
 
-    private Long resolucionId;
+    private Long equivalenciaPk;
     private String nombres;
     private String apellidos;
     private String paisEstudio;
@@ -26,17 +26,25 @@ public class SgEquivalencia implements Serializable {
     private Integer ultimoAnioEstudio;
     private String municipioResidencia;
     private String nacionalidad;
-    private String gradoAMatricular;
-    private String institucionExtranjera;
     private Date fechaRecepcion;
     private Boolean convenioHaya;
 
-    public Long getResolucionId() {
-        return resolucionId;
+    // Campos adicionales para funcionario
+    private String gradoAMatricular;
+    private String institucionExtranjera;
+    private String ubicacionInstitucionExtranjera;
+    private String observaciones;
+    private String numeroResolucion;
+    private Date fechaResolucion;
+    private String estado; // PENDIENTE, EN_REVISION, COMPLETADA, RECHAZADA
+    private Date fechaCreacion;
+
+    public Long getEquivalenciaPk() {
+        return equivalenciaPk;
     }
 
-    public void setResolucionId(Long resolucionId) {
-        this.resolucionId = resolucionId;
+    public void setEquivalenciaPk(Long equivalenciaPk) {
+        this.equivalenciaPk = equivalenciaPk;
     }
 
     public String getNombres() {
@@ -143,12 +151,57 @@ public class SgEquivalencia implements Serializable {
         this.telefono = telefono;
     }
 
+    public String getUbicacionInstitucionExtranjera() {
+        return ubicacionInstitucionExtranjera;
+    }
 
+    public void setUbicacionInstitucionExtranjera(String ubicacionInstitucionExtranjera) {
+        this.ubicacionInstitucionExtranjera = ubicacionInstitucionExtranjera;
+    }
 
-    public SgEquivalencia() {
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getNumeroResolucion() {
+        return numeroResolucion;
+    }
+
+    public void setNumeroResolucion(String numeroResolucion) {
+        this.numeroResolucion = numeroResolucion;
+    }
+
+    public Date getFechaResolucion() {
+        return fechaResolucion;
+    }
+
+    public void setFechaResolucion(Date fechaResolucion) {
+        this.fechaResolucion = fechaResolucion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
 
 
+    public SgEquivalencia() {
+    }
 
 }

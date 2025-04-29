@@ -1,14 +1,15 @@
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"                 
-                xmlns="http://www.w3.org/1999/xhtml"                 
-                xmlns:c="http://java.sun.com/jsp/jstl/core"                 
-                xmlns:f="http://java.sun.com/jsf/core"                 
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:o="http://omnifaces.org/ui"
-                xmlns:p="http://primefaces.org/ui">   
+                xmlns:p="http://primefaces.org/ui">
 
     <h:form id="form">
         <f:passThroughAttribute name="autocomplete" value="off"/>
 
+        <!-- Encabezado y breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.gestionEquivalencia}</a></li>
@@ -18,7 +19,14 @@
 
         <p:outputPanel styleClass="panel-titulo-pagina">
             <h2 class="page-header"><h:outputText value="#{msg.solicitudEquivalencia}"/></h2>
-            <div class="lineaHeader"><div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div></div>
+            <div class="lineaHeader">
+                <div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div>
+            </div>
+        </p:outputPanel>
+
+        <!-- Indicador de modo administrador -->
+        <p:outputPanel styleClass="alert alert-info mb-3" rendered="#{equivalenciaBean.modoEdicionAdmin}">
+            <i class="glyphicon glyphicon-lock"></i> MODO ADMINISTRADOR ACTIVADO
         </p:outputPanel>
 
         <p:fieldset>
@@ -27,151 +35,209 @@
                     <p:messages id="popupmsg" showDetail="true" globalOnly="false" for="popupmsg" closable="true"/>
                     <p:outputPanel id="formularioSolicitud">
 
-                        <!-- Fieldset para la información de contacto -->
+                        <!-- Datos Personales -->
                         <p:fieldset legend="#{msg.datosPersonales}">
+                            <!-- Nombres -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_nombres_solicitante">
                                 <h:outputLabel value="#{msg.nombres}" for="input_nombres_solicitante" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombres_solicitante" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_nombres_solicitante" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.nombres}"
-                                                 required="true" requiredMessage="Nombres es requerido"/>
+                                                 required="true" requiredMessage="Nombres es requerido"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Apellidos -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_apellidos_solicitante">
                                 <h:outputLabel value="#{msg.apellidos}" for="input_apellidos_solicitante" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_apellidos_solicitante" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_apellidos_solicitante" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.apellidos}"
-                                                 required="true" requiredMessage="Apellidos es requerido"/>
+                                                 required="true" requiredMessage="Apellidos es requerido"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Nacionalidad -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_nacionalidad">
                                 <h:outputLabel value="#{msg.nacionalidad}" for="input_nacionalidad" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nacionalidad" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_nacionalidad" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.nacionalidad}"
-                                                 required="true" requiredMessage="Nacionalidad requerida"/>
+                                                 required="true" requiredMessage="Nacionalidad requerida"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Municipio de Residencia -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_municipio">
                                 <h:outputLabel value="#{msg.municipioResidencia}" for="input_municipio" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_municipio" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_municipio" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.municipioResidencia}"
-                                                 required="true" requiredMessage="Nacionalidad requerida"/>
+                                                 required="true" requiredMessage="Municipio requerido"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Correo Electrónico -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_correo">
                                 <h:outputLabel value="#{msg.correoElectronico}" for="input_correo" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_correo" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_correo" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.correoElectronico}"
-                                                 required="true" requiredMessage="Correo electrónico es requerido"/>
+                                                 required="true" requiredMessage="Correo electrónico es requerido"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Teléfono -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_telefono">
                                 <h:outputLabel value="#{msg.telefono}" for="input_telefono" styleClass="col-sm-4 col-form-label"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control" 
-                                                 value="#{equivalenciaBean.entidadEnEdicion.telefono}"/>
+                                    <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.telefono}"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
 
-                        <!-- Fieldset para la información de la persona que realiza el trámite -->
+                        <!-- Información Académica -->
                         <p:fieldset legend="#{msg.informacionAcademica}">
+                            <!-- País de Estudio -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_pais_estudio">
                                 <h:outputLabel value="#{msg.paisEstudio}" for="input_pais_estudio" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_pais_estudio" styleClass="form-control" 
+                                    <h:inputText autocomplete="off" id="input_pais_estudio" styleClass="form-control"
                                                  value="#{equivalenciaBean.entidadEnEdicion.paisEstudio}"
-                                                 required="true" requiredMessage="País de estudio es requerido"/>
+                                                 required="true" requiredMessage="País de estudio es requerido"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Institución Extranjera -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_institucion">
-                                <h:outputLabel value="#{msg.nombreInstitucionExtranjera}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
+                                <h:outputLabel value="#{msg.nombreInstitucionExtranjera}" for="input_institucion" styleClass="col-sm-4 col-form-label"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_institucion" styleClass="form-control" 
-                                                 value="#{equivalenciaBean.entidadEnEdicion.institucionExtranjera}"/>
+                                    <h:inputText autocomplete="off" id="input_institucion" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.institucionExtranjera}"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
+
+                            <!-- Grado Extranjero -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_grado_estudio">
                                 <h:outputLabel value="#{msg.gradoEstudio}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_grado_estudio" styleClass="form-control" 
-                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoExtranjero}"/>
+                                    <h:inputText autocomplete="off" id="input_grado_estudio" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoExtranjero}"
+                                                 />
                                 </p:outputPanel>
                             </p:outputPanel>
 
+                            <!-- Año de Título -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_anio_titulo">
                                 <h:outputLabel value="#{msg.anioTitulo}" for="input_anio_titulo" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
-                                    <p:inputNumber autocomplete="off" id="input_anio_titulo" styleClass="form-control" 
-                                                   value="#{equivalenciaBean.entidadEnEdicion.ultimoAnioEstudio}" 
+                                    <p:inputNumber autocomplete="off" id="input_anio_titulo" styleClass="form-control"
+                                                   value="#{equivalenciaBean.entidadEnEdicion.ultimoAnioEstudio}"
                                                    minValue="1900" maxValue="2100"
-                                                   required="true" requiredMessage="Año de título es requerido"/>
+                                                   required="true" requiredMessage="Año de título es requerido"
+                                                   />
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Ubicación Institución Extranjera (Solo Admin) -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_ubicacion_institucion"
+                                           rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="#{msg.ubicacionInstitucionExtranjera}" for="input_ubicacion_institucion" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_ubicacion_institucion" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.ubicacionInstitucionExtranjera}"/>
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
 
-                        <!-- Fieldset con la información
-                        <p:fieldset legend="Documentos Requeridos para la Solicitud de Equivalencia de Estudio">
-                            <p><strong>PAÍSES SIN CONVENIO DE LA HAYA:</strong></p>
-                            <ul>
-                                <li>Certificado o Certificación de notas del último grado aprobado.</li>
-                                <li>El documento anterior debe ser presentado con auténticas de:
-                                    <ul>
-                                        <li>Autoridades educativas y Ministerio de Relaciones Exteriores del país de procedencia y finalmente por el consulado de El Salvador en dicho país.</li>
-                                        <li>Posteriormente autenticarlas en el Ministerio de Relaciones Exteriores de El Salvador.</li>
-                                    </ul>
-                                </li>
-                                <li>Presentar partida de nacimiento si es salvadoreño y, si es extranjero, presentar pasaporte vigente (original y copia).</li>
-                            </ul>
-
-                            <p><strong>PAÍSES CON CONVENIO DE LA HAYA:</strong></p>
-                            <ul>
-                                <li>Si el país donde realizó sus estudios ha suscrito un convenio de la HAYA con nuestro país, solamente se necesita el sello de APOSTILLA, obtenido en el Ministerio de Relaciones Exteriores del país de procedencia, previo auténtica de documentos académicos en el Ministerio de Educación del país de procedencia.</li>
-                                <li>Si la documentación está escrita en idioma extranjero, deberá ser traducida ante notario salvadoreño residente en nuestro país para que realice las diligencias de traducción.</li>
-                                <li>Presentar partida de nacimiento si es salvadoreño y, si es extranjero, presentar pasaporte vigente (original y copia).</li>
-                            </ul>
-                        </p:fieldset>-->
-
-                        <!-- Fieldset para seleccionar convenio -->
+                        <!-- Datos del Trámite -->
                         <p:fieldset legend="#{msg.datosTramite}">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_grado_matricular">
-                                <h:outputLabel value="#{msg.gradoMatricular}" for="input_grado_estudio" styleClass="col-sm-4 col-form-label"/>
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_gradoMatricular" styleClass="form-control" 
-                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoAMatricular}"/>
-                                </p:outputPanel>
-                            </p:outputPanel>
+                            <!-- Convenio de la Haya -->
                             <p:outputPanel styleClass="form-group row" id="fila_input_convenio">
                                 <h:outputLabel value="#{msg.tieneConvenioHaya}" for="input_convenio" styleClass="col-sm-4 col-form-label obligatorio"/>
                                 <p:outputPanel styleClass="col-sm-8">
                                     <p:selectOneRadio layout="responsive" columns="3" id="input_convenio"
                                                       value="#{equivalenciaBean.entidadEnEdicion.convenioHaya}"
-                                                      required="true" requiredMessage="Debe seleccionar una opción">
+                                                      required="true" requiredMessage="Debe seleccionar una opción"
+                                                      >
                                         <f:selectItems value="#{applicationBean.booleanValues}"/>
-                                        <p:ajax update="panelDocumentosContainer"/> 
+                                        <p:ajax update="panelDocumentosContainer"/>
                                     </p:selectOneRadio>
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
 
+                        <p:fieldset legend="Información pendiente" rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                            <!-- Grado a Matricular (Solo Admin) -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_grado_matricular"
+                                           rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="#{msg.gradoMatricular}" for="input_grado_matricular" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_grado_matricular" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.gradoAMatricular}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Observaciones (Solo Admin) -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_observacion"
+                                           rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="#{msg.observacion}" for="input_observacion" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputTextarea id="input_observacion" styleClass="form-control"
+                                                     value="#{equivalenciaBean.entidadEnEdicion.observaciones}" rows="3"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Número de Resolución (Solo Admin) -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_numero_resolucion"
+                                           rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="#{msg.numeroResolucion}" for="input_numero_resolucion" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_numero_resolucion" styleClass="form-control"
+                                                 value="#{equivalenciaBean.entidadEnEdicion.numeroResolucion}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Fecha de Resolución (Solo Admin) -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_fecha_resolucion"
+                                           rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="#{msg.fechaResolucion}" for="input_fecha_resolucion" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:calendar id="input_fecha_resolucion" value="#{equivalenciaBean.entidadEnEdicion.fechaResolucion}"
+                                                pattern="dd/MM/yyyy" styleClass="form-control"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <p:outputPanel styleClass="form-group row" rendered="#{equivalenciaBean.modoEdicionAdmin}">
+                                <h:outputLabel value="Estado" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:selectOneMenu value="#{equivalenciaBean.entidadEnEdicion.estado}" 
+                                                     styleClass="form-control dropdown texto-medio">
+                                        <f:selectItem itemLabel="PENDIENTE" itemValue="PENDIENTE" />
+                                        <f:selectItem itemLabel="EN REVISIÓN" itemValue="EN_REVISION" />
+                                        <f:selectItem itemLabel="APROBADA" itemValue="APROBADA" />
+                                        <f:selectItem itemLabel="RECHAZADA" itemValue="RECHAZADA" />
+                                        <f:selectItem itemLabel="CANCELADA" itemValue="CANCELADA" />
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Documentos -->
                         <p:outputPanel id="panelDocumentosContainer">
-                            <p:fieldset legend="Agrega los documentos necesarios" 
+                            <p:fieldset legend="#{msg.documentosRequeridos}"
                                         rendered="#{equivalenciaBean.entidadEnEdicion.convenioHaya != null}">
-
-
-
-                                <!-- Tabla para documentos CON convenio -->
-                                <p:outputPanel rendered="#{equivalenciaBean.entidadEnEdicion != null and equivalenciaBean.entidadEnEdicion.convenioHaya != null and equivalenciaBean.entidadEnEdicion.convenioHaya}">
+                                <!-- Documentos con Convenio -->
+                                <p:outputPanel rendered="#{equivalenciaBean.entidadEnEdicion.convenioHaya}">
                                     <p:dataTable id="documentosConConvenio"
                                                  rowSelectMode="checkbox"
                                                  emptyMessage="#{msg.noHayResultados}"
@@ -195,14 +261,15 @@
                                                               auto="true"
                                                               sizeLimit="10485760"
                                                               allowTypes="/(\.|\/)(pdf|docx?|xlsx?|jpe?g|png)$/"
-                                                              styleClass="ocultar-icono"/>
+                                                              styleClass="ocultar-icono"
+                                                              />
                                             </div>
                                         </p:column>
                                     </p:dataTable>
                                 </p:outputPanel>
 
-                                <!-- Tabla para documentos SIN convenio -->
-                                <p:outputPanel rendered="#{equivalenciaBean.entidadEnEdicion != null and equivalenciaBean.entidadEnEdicion.convenioHaya != null and not equivalenciaBean.entidadEnEdicion.convenioHaya}">
+                                <!-- Documentos sin Convenio -->
+                                <p:outputPanel rendered="#{not equivalenciaBean.entidadEnEdicion.convenioHaya}">
                                     <p:dataTable id="documentosSinConvenio"
                                                  rowSelectMode="checkbox"
                                                  emptyMessage="#{msg.noHayResultados}"
@@ -226,7 +293,8 @@
                                                               auto="true"
                                                               sizeLimit="10485760"
                                                               allowTypes="/(\.|\/)(pdf|docx?|xlsx?|jpe?g|png)$/"
-                                                              styleClass="ocultar-icono"/>
+                                                              styleClass="ocultar-icono"
+                                                              />
                                             </div>
                                         </p:column>
                                     </p:dataTable>
@@ -234,11 +302,12 @@
                             </p:fieldset>
                         </p:outputPanel>
 
-                        <!-- Botón de guardar -->
+                        <!-- Botones -->
                         <p:outputPanel styleClass="control-group">
                             <p:outputPanel styleClass="float-right">
-                                <p:commandButton id="btnGuardar" value="#{msg.guardar}" action="#{solicitudBean.guardar()}" 
+                                <p:commandButton id="btnGuardar" value="#{msg.guardar}" action="#{equivalenciaBean.guardar}"
                                                  update="@form" styleClass="btn btn-primary" icon="glyphicon glyphicon-floppy-disk"/>
+
                             </p:outputPanel>
                         </p:outputPanel>
                         <p:blockUI block="@form" trigger="btnGuardar"/>

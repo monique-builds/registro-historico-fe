@@ -15,7 +15,6 @@ import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
-import sv.gob.mined.siges.web.constantes.ConstantesOperaciones;
 import sv.gob.mined.siges.web.constantes.ConstantesPaginas;
 import sv.gob.mined.siges.web.mensajes.Etiquetas;
 
@@ -41,14 +40,14 @@ public class MenuViewBean implements Serializable {
 
             DefaultMenuItem item2;
             DefaultSubMenu submenu;
+            DefaultSubMenu submenu2;
 
             // Menú de Inicio
             item2 = new DefaultMenuItem(Etiquetas.getValue("inicio", locale), null, ConstantesPaginas.IR_A_INICIO);
             model.addElement(item2);
 
-
-            // Menú de Registro Académico
-            submenu = new DefaultSubMenu(Etiquetas.getValue("registroAcademico", locale));
+            // Menú de Registro de notas TDR 52
+            submenu = new DefaultSubMenu(Etiquetas.getValue("certificacionDeRegistroDeNotas", locale));
 
             // Submenú para Cuadro de Notas
             item2 = new DefaultMenuItem(Etiquetas.getValue("cuadroNotas", locale), null, ConstantesPaginas.CUADRO_NOTAS);
@@ -58,9 +57,25 @@ public class MenuViewBean implements Serializable {
             item2 = new DefaultMenuItem(Etiquetas.getValue("gestionCertificaciones", locale), null, ConstantesPaginas.CERTIFICACIONES);
             submenu.addElement(item2);
 
+            // Menú de Certificacion de titulos TDR 53
+            submenu2 = new DefaultSubMenu(Etiquetas.getValue("certificacionDeTitulosEducacionMedia", locale));
+
+            // Submenú para Cuadro de Notas
+            item2 = new DefaultMenuItem(Etiquetas.getValue("cuadroNotasEducacionMedia", locale), null, ConstantesPaginas.CUADRO_NOTAS_EDUCACION_MEDIA);
+            submenu2.addElement(item2);
+
+            // Submenú para Certificaciones
+            item2 = new DefaultMenuItem(Etiquetas.getValue("certificacionDeTitulo", locale), null, ConstantesPaginas.CERTIFICACION_TITULO);
+            submenu2.addElement(item2);
+
             if (submenu.getElements().size() > 0) {
                 submenu.setExpanded(true);
                 model.addElement(submenu);
+            }
+
+            if (submenu2.getElements().size() > 0) {
+                submenu2.setExpanded(true);
+                model.addElement(submenu2);
             }
 
             item2 = new DefaultMenuItem(Etiquetas.getValue("gestionEtiqueta", locale), null, ConstantesPaginas.GESTION_ETIQUETAS);
@@ -76,6 +91,9 @@ public class MenuViewBean implements Serializable {
             model.addElement(item2);
 
             item2 = new DefaultMenuItem(Etiquetas.getValue("gestionMarginacion", locale), null, ConstantesPaginas.MARGINACIONES);
+            model.addElement(item2);
+
+            item2 = new DefaultMenuItem(Etiquetas.getValue("autenticaDeDocumentos", locale), null, ConstantesPaginas.AUTENTICA);
             model.addElement(item2);
 
             model.generateUniqueIds();

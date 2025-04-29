@@ -149,6 +149,187 @@
                                 </p:outputPanel>
                             </p:outputPanel>
                         </p:fieldset>
+
+                        <p:fieldset legend="Información pendiente">
+                            <!-- Datos ingresados por funcionario (solo visible en modoAdmin) -->
+                            <p:outputPanel rendered="#{incorporacionBean.modoEdicionAdmin}">
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Bachillerato Acreditado" for="input_bachillerato_acreditado"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_bachillerato_acreditado"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.bachilleratoAcreditado}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Título a Incorporar" for="input_titulo_incorporar"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_titulo_incorporar"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.tituloAIncorporar}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Institución" for="input_institucion_func"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_institucion_func"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.institucion}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Locación" for="input_locacion"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_locacion"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.locacion}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="País" for="input_pais_func"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_pais_func"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.pais}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Edad" for="input_edad"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-4">
+                                        <p:inputNumber autocomplete="off" id="input_edad"
+                                                       styleClass="form-control"
+                                                       value="#{incorporacionBean.entidadEnEdicion.edad}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Profesión" for="input_profesion"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_profesion"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.profesion}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Documento a Reconocer" for="input_doc_reconocer"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_doc_reconocer"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.documentoAReconocer}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Documento a Incorporar" for="input_doc_incorporar"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputText autocomplete="off" id="input_doc_incorporar"
+                                                     styleClass="form-control"
+                                                     value="#{incorporacionBean.entidadEnEdicion.documentoAIncorporar}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Año de Estudio" for="input_anio_estudio"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:inputNumber autocomplete="off" id="input_anio_estudio"
+                                                       styleClass="form-control"
+                                                       value="#{incorporacionBean.entidadEnEdicion.incAnioEstudio}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Domicilio" for="input_domicilio"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputTextarea  id="input_domicilio"
+                                                          styleClass="form-control"
+                                                          value="#{incorporacionBean.entidadEnEdicion.domicilio}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Observaciones" for="input_observaciones"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <h:inputTextarea id="input_observaciones"
+                                                         styleClass="form-control"
+                                                         value="#{incorporacionBean.entidadEnEdicion.observaciones}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Fecha Resolución" for="input_fecha_resolucion"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:calendar id="input_fecha_resolucion" styleClass="form-control"
+                                                    value="#{incorporacionBean.entidadEnEdicion.fechaResolucion}"
+                                                    pattern="dd/MM/yyyy"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Fecha Acuerdo" for="input_fecha_acuerdo"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:calendar id="input_fecha_acuerdo" styleClass="form-control"
+                                                    value="#{incorporacionBean.entidadEnEdicion.fechaAcuerdo}"
+                                                    pattern="dd/MM/yyyy"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <!-- Datos del sistema (solo visibles en modoAdmin) -->
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Número de Acuerdo" for="input_num_acuerdo"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:inputNumber autocomplete="off" id="input_num_acuerdo"
+                                                       styleClass="form-control"
+                                                       value="#{incorporacionBean.entidadEnEdicion.numeroAcuerdo}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row">
+                                    <h:outputLabel value="Número de Resolución" for="input_num_resolucion"
+                                                   styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:inputNumber autocomplete="off" id="input_num_resolucion"
+                                                       styleClass="form-control"
+                                                       value="#{incorporacionBean.entidadEnEdicion.numeroResolucion}"/>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:outputPanel styleClass="form-group row" rendered="#{incorporacionBean.modoEdicionAdmin}">
+                                    <h:outputLabel value="Estado" styleClass="col-sm-4 col-form-label"/>
+                                    <p:outputPanel styleClass="col-sm-8">
+                                        <p:selectOneMenu value="#{incorporacionBean.entidadEnEdicion.estado}" 
+                                                         styleClass="form-control dropdown texto-medio">
+                                            <f:selectItem itemLabel="PENDIENTE" itemValue="PENDIENTE" />
+                                            <f:selectItem itemLabel="EN REVISIÓN" itemValue="EN_REVISION" />
+                                            <f:selectItem itemLabel="APROBADA" itemValue="APROBADA" />
+                                            <f:selectItem itemLabel="RECHAZADA" itemValue="RECHAZADA" />
+                                            <f:selectItem itemLabel="CANCELADA" itemValue="CANCELADA" />
+                                        </p:selectOneMenu>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
                         <!-- Fieldset para los documentos académicos -->
                         <p:fieldset id="documentosIncorporacion" legend="#{msg.documentosIncorporacion}">
                             <p:outputPanel styleClass="form-group row" id="fila_input_documentos_incorporacion">
@@ -190,9 +371,11 @@
                         </p:fieldset>
                         <p:outputPanel styleClass="control-group">
                             <p:outputPanel styleClass="float-right">
-                                <p:commandButton id="btnGuardar" value="#{msg.enviarSolicitud}"
+                                <p:commandButton id="btnGuardar" value="#{msg.guardar}"
                                                  action="#{incorporacionBean.guardar()}" update="@form"
-                                                 styleClass="btn btn-primary" />
+                                                 styleClass="btn btn-primary"
+                                                 icon="glyphicon glyphicon-floppy-disk"
+                                                 />
                             </p:outputPanel>
                         </p:outputPanel>
                         <p:blockUI block="@form" trigger="btnGuardar" />

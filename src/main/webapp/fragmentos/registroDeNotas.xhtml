@@ -1,0 +1,200 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="form">
+        <f:passThroughAttribute name="autocomplete" value="off"/>
+
+        <!-- Encabezado y breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.cuadroNotas}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">#{msg.certificacionDeRegistroDeNotas}</li>
+            </ol>
+        </nav>
+
+        <p:outputPanel styleClass="panel-titulo-pagina">
+            <h2 class="page-header"><h:outputText value="#{msg.certificacionDeRegistroDeNotas}"/></h2>
+            <div class="lineaHeader">
+                <div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div>
+            </div>
+        </p:outputPanel>
+        <div class="requeridos">
+            <h:outputText value="#{msg.textoCamposObligatorios}" />
+        </div>
+        <p:fieldset>
+            <p:outputPanel id="itemDetail">
+                <h:panelGroup>
+                    <p:messages id="popupmsg" showDetail="true" globalOnly="false" for="popupmsg" closable="true"/>
+                    <p:outputPanel id="formularioRegistro">
+
+                        <!-- Datos del Solicitante -->
+                        <p:fieldset legend="#{msg.datosSolicitante}">
+                            <!-- Nombre del Solicitante -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_nombre_solicitante">
+                                <h:outputLabel value="#{msg.nombreSolicitante}" for="input_nombre_solicitante" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_nombre_solicitante" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.nombreSolicitante}"
+                                                 required="true" requiredMessage="Nombre del solicitante es requerido"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Persona que atiende -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_persona_atiende">
+                                <h:outputLabel value="#{msg.personaAtiende}" for="input_persona_atiende" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_persona_atiende" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.personaAtiende}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Correo Electrónico -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_correo">
+                                <h:outputLabel value="#{msg.correoElectronico}" for="input_correo" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_correo" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.correoElectronico}"
+                                                 required="true" requiredMessage="Correo electrónico es requerido"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Teléfono -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_telefono">
+                                <h:outputLabel value="#{msg.telefono}" for="input_telefono" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.telefono}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Fecha de Nacimiento -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_fecha_nacimiento">
+                                <h:outputLabel value="#{msg.fechaNacimiento}" for="input_fecha_nacimiento" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:calendar id="input_fecha_nacimiento" 
+                                                value="#{llenadoDeSolicitudBean.entidadEnEdicion.fechaNacimiento}"
+                                                pattern="dd/MM/yyyy" styleClass="form-control"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Información Académica -->
+                        <p:fieldset legend="#{msg.informacionAcademica}">
+                            <!-- Grado -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_grado">
+                                <h:outputLabel value="#{msg.grado}" for="input_grado" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_grado" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.grado}"
+                                                 required="true" requiredMessage="Grado es requerido"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Institución Educativa -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_institucion_educativa">
+                                <h:outputLabel value="#{msg.institucionEducativa}" for="input_institucion_educativa" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_institucion_educativa" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.institucionEducativa}"
+                                                 required="true" requiredMessage="Institución educativa es requerida"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Bachillerato que estudió -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_bachillerato">
+                                <h:outputLabel value="#{msg.bachilleratoEstudio}" for="input_bachillerato" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_bachillerato" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.bachilleratoEstudio}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Opción de Bachillerato -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_opcion_bachillerato">
+                                <h:outputLabel value="#{msg.opcionBachillerato}" for="input_opcion_bachillerato" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_opcion_bachillerato" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.opcionBachillerato}"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Año de Finalización -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_anio_finalizacion">
+                                <h:outputLabel value="#{msg.anioFinalizacion}" for="input_anio_finalizacion" 
+                                               styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <p:inputNumber autocomplete="off" id="input_anio_finalizacion" styleClass="form-control"
+                                                   value="#{llenadoDeSolicitudBean.entidadEnEdicion.anioFinalizacion}"
+                                                   minValue="1900" maxValue="2100"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                            
+                             <p:outputPanel styleClass="form-group row" id="fila_input_observacion"
+                                         >
+                                <h:outputLabel value="#{msg.observacion}" for="input_observacion" styleClass="col-sm-4 col-form-label"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputTextarea id="input_observacion" styleClass="form-control"
+                                                     value="#{llenadoDeSolicitudBean.entidadEnEdicion.observaciones}" rows="3"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Ubicación -->
+                        <p:fieldset legend="#{msg.ubicacion}">
+                            <!-- Departamento -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_departamento">
+                                <h:outputLabel value="#{msg.departamento}" for="input_departamento" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                 <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_departamento" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.departamento}"
+                                                 required="true" requiredMessage="Departamento es requerido"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <!-- Municipio -->
+                            <p:outputPanel styleClass="form-group row" id="fila_input_municipio">
+                                <h:outputLabel value="#{msg.municipio}" for="input_municipio" 
+                                               styleClass="col-sm-4 col-form-label obligatorio"/>
+                                <p:outputPanel styleClass="col-sm-8">
+                                    <h:inputText autocomplete="off" id="input_municipio" styleClass="form-control"
+                                                 value="#{llenadoDeSolicitudBean.entidadEnEdicion.municipio}"
+                                                 required="true" requiredMessage="Municipio es requerido"/>
+                                </p:outputPanel>
+                            </p:outputPanel>
+                        </p:fieldset>
+
+                        <!-- Botones -->
+                        <p:outputPanel styleClass="control-group">
+                            <p:outputPanel styleClass="float-right">
+                                <p:commandButton id="btnGuardar" value="#{msg.enviarSolicitud}" 
+                                                 action="#{llenadoDeSolicitudBean.guardar()}"
+                                                 update="@form" styleClass="btn btn-primary"/>
+                            </p:outputPanel>
+                        </p:outputPanel>
+                        <p:blockUI block="@form" trigger="btnGuardar"/>
+                        <p:defaultCommand target="btnGuardar" scope="itemDetail"/>
+                    </p:outputPanel>
+                </h:panelGroup>
+            </p:outputPanel>
+        </p:fieldset>
+
+        <h:panelGroup styleClass="volverLink" layout="block">
+            <p:commandLink value="#{msg.volver}" onclick="history.go(-1)" styleClass="btn btn-link"/>
+        </h:panelGroup>
+    </h:form>
+</ui:composition>

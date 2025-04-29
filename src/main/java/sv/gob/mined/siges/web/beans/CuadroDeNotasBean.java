@@ -28,7 +28,7 @@ import sv.gob.mined.siges.web.utilidades.JSFUtils;
  *
  * @author tiffa
  */
-@Named("cuadroDeNotasBean")
+@Named
 @ViewScoped
 public class CuadroDeNotasBean implements Serializable {
 

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 import sv.gob.mined.siges.web.dto.catalogo.SgEstadoCivil;
 import sv.gob.mined.siges.web.dto.catalogo.SgNacionalidad;
@@ -36,7 +37,6 @@ public class SgIncorporacion implements Serializable {
     private String nombreSolicitante;
     private LocalDate fechaRecepcion;
     private String incUltimoGradoEstudio;
-    private Integer incAnioEstudio;
     private String incCiudad;
     private String incNumeroTramite;
     private String incNumeroResolucion;
@@ -49,12 +49,33 @@ public class SgIncorporacion implements Serializable {
     private String nombreEstudiante;
     private String municipio;
     private String departamento;
-    private String institucion;
     private String gradoAcademico;
     private String paisGraduacion;
     private Integer anioTitulo;
     private SgArchivo indFormula;
 
+    //Datos ingresados por funcionario;
+    private String bachilleratoAcreditado;
+    private String tituloAIncorporar;
+    private String institucion;
+    private String locacion;
+    private String pais;
+    private Integer edad;
+    private String profesion;
+    private String documentoAReconocer;
+    private String documentoAIncorporar;
+    private Integer incAnioEstudio;
+    private String domicilio;
+    private String observaciones;
+    private Date fechaResolucion;
+    private Date fechaAcuerdo;
+    private String estado;
+
+    //Datos sistema
+    private Integer numeroAcuerdo;
+    private Integer numeroResolucion;
+
+   
     public SgArchivo getIndFormula() {
         return indFormula;
     }
@@ -62,7 +83,6 @@ public class SgIncorporacion implements Serializable {
     public void setIndFormula(SgArchivo indFormula) {
         this.indFormula = indFormula;
     }
-
 
     public SgIncorporacion() {
     }
@@ -364,6 +384,130 @@ public class SgIncorporacion implements Serializable {
     public void setAnioTitulo(Integer anioTitulo) {
         this.anioTitulo = anioTitulo;
     }
+
+    public String getBachilleratoAcreditado() {
+        return bachilleratoAcreditado;
+    }
+
+    public void setBachilleratoAcreditado(String bachilleratoAcreditado) {
+        this.bachilleratoAcreditado = bachilleratoAcreditado;
+    }
+
+    public String getTituloAIncorporar() {
+        return tituloAIncorporar;
+    }
+
+    public void setTituloAIncorporar(String tituloAIncorporar) {
+        this.tituloAIncorporar = tituloAIncorporar;
+    }
+
+    public String getLocacion() {
+        return locacion;
+    }
+
+    public void setLocacion(String locacion) {
+        this.locacion = locacion;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
+
+    public String getDocumentoAReconocer() {
+        return documentoAReconocer;
+    }
+
+    public void setDocumentoAReconocer(String documentoAReconocer) {
+        this.documentoAReconocer = documentoAReconocer;
+    }
+
+    public String getDocumentoAIncorporar() {
+        return documentoAIncorporar;
+    }
+
+    public void setDocumentoAIncorporar(String documentoAIncorporar) {
+        this.documentoAIncorporar = documentoAIncorporar;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Date getFechaResolucion() {
+        return fechaResolucion;
+    }
+
+    public void setFechaResolucion(Date fechaResolucion) {
+        this.fechaResolucion = fechaResolucion;
+    }
+
+    public Date getFechaAcuerdo() {
+        return fechaAcuerdo;
+    }
+
+    public void setFechaAcuerdo(Date fechaAcuerdo) {
+        this.fechaAcuerdo = fechaAcuerdo;
+    }
+
+    public Integer getNumeroAcuerdo() {
+        return numeroAcuerdo;
+    }
+
+    public void setNumeroAcuerdo(Integer numeroAcuerdo) {
+        this.numeroAcuerdo = numeroAcuerdo;
+    }
+
+    public Integer getNumeroResolucion() {
+        return numeroResolucion;
+    }
+
+    public void setNumeroResolucion(Integer numeroResolucion) {
+        this.numeroResolucion = numeroResolucion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+
+
+
 
     @Override
     public int hashCode() {

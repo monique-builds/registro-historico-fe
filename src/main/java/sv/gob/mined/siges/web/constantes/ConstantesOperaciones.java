@@ -11,9 +11,6 @@ public class ConstantesOperaciones {
     
     public static final String BUSCAR_SEDES = "EB1";
 
- 
-   
-
     //Operaciones de registro his
     public static final String VER_DATOS_RH_ETIQUETA = "HP1";
     public static final String CREAR_RH_ETIQUETA = "H1";
@@ -40,8 +37,50 @@ public class ConstantesOperaciones {
     public static final String MENU_INCORPORACIONES = "HM3";
 
     public static final String EDITAR_DATOS_MARGINACION = "H11";
-    public static final String ACTUALIZAR_RH_CERTIFICACION = "H12";
+    public static final String CREAR_MARGINACION = "H12";
+    public static final String ACTUALIZAR_RH_CERTIFICACION = "H13";
 
     
+    // ******************************************
+    // OPERACIONES PARA MÓDULO DE EQUIVALENCIAS
+    // ******************************************
+    
+    // Operaciones para ciudadanos
+    public static final String CREAR_EQUIVALENCIA_CIUDADANO = "EQ1";
+    public static final String VER_EQUIVALENCIA_CIUDADANO = "EQ2";
+    
+    // Operaciones para funcionarios
+    public static final String CREAR_EQUIVALENCIA_FUNCIONARIO = "EQ3";
+    public static final String ACTUALIZAR_EQUIVALENCIA = "EQ4";
+    public static final String ELIMINAR_EQUIVALENCIA = "EQ5";
+    public static final String CAMBIAR_ESTADO_EQUIVALENCIA = "EQ6";
+    
+    // Operaciones de búsqueda
+    public static final String BUSCAR_EQUIVALENCIAS = "EQB1";
+    public static final String BUSCAR_EQUIVALENCIAS_PENDIENTES = "EQB2";
+    public static final String BUSCAR_EQUIVALENCIAS_POR_CIUDADANO = "EQB3";
+    
+    // Menús
+    public static final String MENU_EQUIVALENCIAS_CIUDADANO = "EQM1";
+    public static final String MENU_EQUIVALENCIAS_FUNCIONARIO = "EQM2";
+    
+    // Permisos especiales
+    public static final String GENERAR_RESOLUCION_EQUIVALENCIA = "EQ7";
+    public static final String IMPRIMIR_EQUIVALENCIA = "EQ8";
+    public static final String EXPORTAR_EQUIVALENCIAS = "EQ9";
+    
+    // Operaciones para documentos
+    public static final String AGREGAR_DOCUMENTO_EQUIVALENCIA = "EQ10";
+    public static final String ELIMINAR_DOCUMENTO_EQUIVALENCIA = "EQ11";
+    public static final String DESCARGAR_DOCUMENTO_EQUIVALENCIA = "EQ12";
+    
+    // Operaciones para historial
+    public static final String VER_HISTORIAL_EQUIVALENCIA = "EQ13";
+    public static final String AGREGAR_COMENTARIO_EQUIVALENCIA = "EQ14";
+
+    
+
+
+
 
  }

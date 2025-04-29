@@ -7,10 +7,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 import sv.gob.mined.siges.web.dto.SgDocumento;
 import sv.gob.mined.siges.web.dto.SgDocumentosMarginacion;
+import sv.gob.mined.siges.web.dto.SgEquivalencia;
 import sv.gob.mined.siges.web.dto.SgMarginacion;
 
 @Named
@@ -23,7 +22,23 @@ public class MarginacionBean implements Serializable {
     private List<SgDocumentosMarginacion> documentosAcademicos = new ArrayList<>();
     private List<SgDocumentosMarginacion> documentosSeleccionados = new ArrayList<>();
 
+    private boolean modoEdicionAdmin;
+
     @PostConstruct
+    public void init() {
+        // Forzar modo administrador para pruebas
+        this.modoEdicionAdmin = true;
+
+        // En producción usar:
+        // this.modoEdicionAdmin = verificarSiEsAdmin();
+        if (solicitudMarginacion == null) {
+            solicitudMarginacion = new SgMarginacion();
+        }
+
+        // Inicializar documentos
+        cargarDocumentosAcademicos();
+    }
+
     public void cargarDocumentosAcademicos() {
         documentosAcademicos.add(new SgDocumentosMarginacion(1L, new SgDocumento(1L, "Título de Educación Media", "PDF")));
         documentosAcademicos.add(new SgDocumentosMarginacion(2L, new SgDocumento(2L, "Certificados de Educación Media", "PDF")));
@@ -66,7 +81,6 @@ public class MarginacionBean implements Serializable {
 //        }
 //
 //    }
-
     // Getters y setters para la información de contacto
     public SgMarginacion getSolicitudMarginacion() {
         return solicitudMarginacion;
@@ -81,12 +95,20 @@ public class MarginacionBean implements Serializable {
         return documentosAcademicos;
     }
 
+    public void setDocumentosAcademicos(List<SgDocumentosMarginacion> documentosAcademicos) {
+        this.documentosAcademicos = documentosAcademicos;
+    }
+
     public List<SgDocumentosMarginacion> getDocumentosSeleccionados() {
         return documentosSeleccionados;
     }
 
     public void setDocumentosSeleccionados(List<SgDocumentosMarginacion> documentosSeleccionados) {
         this.documentosSeleccionados = documentosSeleccionados;
+    }
+
+    public boolean isModoEdicionAdmin() {
+        return modoEdicionAdmin;
     }
 
 }

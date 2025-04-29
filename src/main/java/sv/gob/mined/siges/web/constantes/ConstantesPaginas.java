@@ -21,7 +21,11 @@ public class ConstantesPaginas {
     public static final String MARGINACION = "marginacion";
     public static final String MARGINACIONES = "marginaciones";
     public static final String CUADRO_NOTAS = "cuadroNotas";
+    public static final String CUADRO_NOTAS_EDUCACION_MEDIA = "cuadroNotasEducacionMedia";
+    public static final String REGISTRO_NOTAS = "registroDeNotas";
+    public static final String CERTIFICACION_TITULO = "certificacionDeTitulo";
     public static final String CERTIFICACIONES = "certificaciones";
     public static final String CERTIFICACION = "certificacion";
- 
+    public static final String AUTENTICA = "autenticaDeDocumentos";
+   
 }

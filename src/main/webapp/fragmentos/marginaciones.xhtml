@@ -1,161 +1,185 @@
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:o="http://omnifaces.org/ui">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
 
     <h:form id="form">
         <f:passThroughAttribute name="autocomplete" value="off" />
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a
-                        href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.gestionMarginacion}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">#{msg.solicitudMarginacion}</li>
+                <li class="breadcrumb-item"><a href="#{ConstantesPaginas.IR_A_INICIO}.xhtml">#{msg.inicio}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">#{msg.gestionMarginacion}</li>
             </ol>
         </nav>
 
         <p:outputPanel styleClass="panel-titulo-pagina">
             <h2 class="page-header">
-                <h:outputText value="#{msg.solicitudMarginacion}" />
+                <h:outputText value="#{msg.gestionMarginacion}" />
             </h2>
+
+            <p:outputPanel styleClass="float-right">
+                <p:link outcome="#{ConstantesPaginas.MARGINACION}" title="#{msg.nuevaMarginacion}"
+                        styleClass="btn btn-secondary"
+                        >
+                    <h:outputText styleClass="glyphicon glyphicon-plus" />
+                    <h:outputText styleClass="" value="#{msg.nuevaMarginacion}" />
+                    <f:param name="edit" value="true" />
+                </p:link>
+            </p:outputPanel>
+
             <div class="lineaHeader"><div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div></div>
+
         </p:outputPanel>
 
-        <!-- Fieldset global sin leyenda -->
-        <p:fieldset>
-            <p:outputPanel id="itemDetail">
-                <h:panelGroup>
-                    <p:messages id="popupmsg" showDetail="true" globalOnly="false" for="popupmsg" closable="true" />
-                    <p:outputPanel id="formularioMarginacion">
+        <h3><h:outputText value="#{msg.busqueda}"/></h3>
+        <p:panel header="#{msg.filtro}" toggleable="true" toggleSpeed="500" closeSpeed="500" styleClass="panel-filtro">
+            <p:outputPanel id="pnlSearch" styleClass="row">
+                <p:outputPanel styleClass="col-md-6">
+                    <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.nombresApellidos}" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9">
+                            <div class="ui-inputgroup">
+                                <h:inputText autocomplete="off" styleClass="form-control" 
+                                             style="display: inline-block;"
+                                             id="nombre_completo"
+                                             value="#{marginacionesBean.filtro.nombreCompleto}" rendered="#{marginacionesBean.filtroNombreCompleto.nombreCompleto == null}"/>
+                                <h:inputText autocomplete="off" styleClass="form-control"
+                                             style="display: inline-block;"
+                                             disabled="true"
+                                             rendered="#{marginacionesBean.filtroNombreCompleto.nombreCompleto != null}"
+                                             value="#{marginacionesBean.filtroNombreCompleto.nombreCompleto}" />      
+                                <f:subview id="busquedaNombre">
+                                    <ui:include src="componentes/busquedaNombreComponente.xhtml" >   
+                                        <ui:param name="controllerParam" value="#{marginacionesBean}" />
+                                        <ui:param name="actionParam" value="filtroNombreCompletoSeleccionar" />
+                                        <ui:param name="filtroNombreCompleto" value="#{marginacionesBean.filtroNombreCompleto}" />
+                                    </ui:include>
+                                </f:subview>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
 
-                        <!-- Fieldset para la información de contacto -->
-                        <p:fieldset legend="Información de contacto">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_nombres_solicitante">
-                                <h:outputLabel value="#{msg.nombres}" for="input_nombre_solicitante"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombres_solicitante"
-                                                 styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.nombresSolicitante}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
-                            <p:outputPanel styleClass="form-group row" id="fila_input_apellidos_solicitante">
-                                <h:outputLabel value="#{msg.apellidos}" for="input_apellidos_solicitante"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_apellidos_solicitante"
-                                                 styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.apellidosSolicitante}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
+                    <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.dui}" for="b_dui" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9">
+                            <h:inputText autocomplete="off" styleClass="form-control" id="b_dui"
+                                         value="#{marginacionesBean.filtro.dui}" />
+                        </p:outputPanel>
+                    </p:outputPanel>    
 
-                            <p:outputPanel styleClass="form-group row" id="fila_input_correo">
-                                <h:outputLabel value="#{msg.correoElectronico}" for="input_correo"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_correo" styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.correoElectronico}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
+                </p:outputPanel>
 
-                            <p:outputPanel styleClass="form-group row" id="fila_input_telefono">
-                                <h:outputLabel value="#{msg.telefono}" for="input_telefono"
-                                               styleClass="col-sm-4 col-form-label" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_telefono" styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.telefono}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
-                        </p:fieldset>
+                <p:outputPanel styleClass="col-md-6">
 
-                        <!-- Fieldset para la información del estudiante -->
-                        <p:fieldset legend="Información del estudiante">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_nombreSegunPartidaMarginada">
-                                <h:outputLabel value="#{msg.nombreEstudiante}" for="input_nombre_estudiante"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombreSegunPartidaMarginada"
-                                                 styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.nombreSegunPartidaMarginada}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
-                            <p:outputPanel styleClass="form-group row" id="fila_input_nombreSegunDocumentoAcademico">
-                                <h:outputLabel value="#{msg.nombreSegunDocumentosAcademicos}" for="input_nombre_estudiante"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_nombreSegunDocumentoAcademico"
-                                                 styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.nombreSegunDocumentoAcademico}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
 
-                            <p:outputPanel styleClass="form-group row" id="fila_input_domicilio">
-                                <h:outputLabel value="#{msg.domicilio}" for="input_domicilio"
-                                               styleClass="col-sm-4 col-form-label obligatorio" />
-                                <p:outputPanel styleClass="col-sm-8">
-                                    <h:inputText autocomplete="off" id="input_domicilio" styleClass="form-control"
-                                                 value="#{marginacionBean.solicitudMarginacion.domicilio}" />
-                                </p:outputPanel>
-                            </p:outputPanel>
-                        </p:fieldset>
 
-                        <!-- Fieldset para los documentos académicos a marginar -->
-                        <p:fieldset id="documentosAcademicos" legend="#{msg.documentosAcademicos}">
-                            <p:outputPanel styleClass="form-group row" id="fila_input_documentos_academicos">
-                                <p:outputPanel styleClass="col-sm-12">
-                                    <p:dataTable id="listaDocumentos"
-                                                 rowSelectMode="checkbox"
-                                                 emptyMessage="#{msg.noHayResultados}"
-                                                 var="documento"
-                                                 selection="#{marginacionBean.documentosSeleccionados}"
-                                                 value="#{marginacionBean.documentosAcademicos}"
-                                                 rowKey="#{documento.documentoMarginacionPK}"
-                                                 style="margin-bottom:0;"
-                                                 >
+                    <p:outputPanel styleClass="form-group row">
+                        <h:outputLabel value="#{msg.hestado}" for="pasaporte" styleClass="col-sm-3 col-form-label"/>
+                        <p:outputPanel styleClass="col-sm-9 ">
+                            <h:inputText autocomplete="off" styleClass="form-control" id="pasaporte"  
+                                         value="#{marginacionesBean.filtro.estadoMarginacion}" />
+                        </p:outputPanel>
+                    </p:outputPanel>                    
 
-                                        <p:column selectionMode="multiple" style="width:16px; text-align:center;" />
+                    <p:outputPanel styleClass="form-group row">
+                        <p:outputPanel styleClass="col-sm-9 offset-sm-3">
+                            <p:commandButton id="btnBuscar" value="#{msg.buscar}" styleClass="btn btn-primary" 
+                                             icon="glyphicon glyphicon-search" action="#{marginacionesBean.buscar()}" 
+                                             update="pnlResultado"/>
+                            <p:commandLink value="#{msg.limpiar}" action="#{marginacionesBean.limpiar()}" 
+                                           update="pnlSearch pnlResultado" immediate="true" 
+                                           styleClass="btn btn-link">
+                                <p:resetInput target="pnlSearch pnlResultado" />
+                            </p:commandLink>
+                            <p:defaultCommand target="btnBuscar" scope="pnlSearch"/>
+                            <p:blockUI block="@form" trigger="btnBuscar" />
+                        </p:outputPanel>
+                    </p:outputPanel>
+                </p:outputPanel>   
 
-                                        <p:column headerText="#{msg.documentos}">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h:outputText styleClass="fw-bold" value="#{documento.documentoFK.nombreDocumento}" />
-                                                <p:fileUpload id="file_upload_#{documento.id}"
-                                                              mode="advanced" 
-                                                              dragDropSupport="true"
-                                                              label="Cargar archivo"
-                                                              uploadLabel="#{msg.confirmar}"
-                                                              cancelLabel="#{msg.cancelar}"
-                                                              auto="true"
-                                                              sizeLimit="10485760"
-                                                              allowTypes="/(\.|\/)(pdf|docx?|xlsx?|jpe?g|png)$/"
-                                                              styleClass="ocultar-icono"
-                                                              /> 
-                                            </div>
-                                        </p:column>
-                                    </p:dataTable>
+            </p:outputPanel>
+        </p:panel>
 
-                                </p:outputPanel>
-                            </p:outputPanel>
-                        </p:fieldset>
+        <p:outputPanel id="pnlResultado">
+            <p:dataTable id="basicDT" widgetVar="widResultado" var="elem"
+                         value="#{marginacionesBean.marginacionLazyModel}" emptyMessage="#{msg.noHayResultados}"
+                         paginator="true" lazy="true" paginatorPosition="bottom"
+                         currentPageReportTemplate="#{msg.pagina} {currentPage} #{msg.de_m} {totalPages}" sortField="incPk"
+                         paginatorTemplate="#{applicationBean.paginatorTemplate}"
+                         rowsPerPageTemplate="#{applicationBean.rowsPerPageTemplate}" rows="#{marginacionesBean.paginado}"
+                         reflow="true">
+                <f:facet name="{anterior}">
+                    <h:outputText styleClass="ui-paginator-prev  ui-state-disabled" value="&lt; #{msg.anterior}" />
+                </f:facet>
+                <f:facet name="{siguiente}">
+                    <h:outputText
+                        styleClass="#{marginacionesBean.totalResultados lt (marginacionesBean.paginado+1) ? 'ui-paginator-next ui-state-disabled' : 'ui-paginator-next'}"
+                        value="#{msg.siguiente} &gt;" />
+                </f:facet>
 
-                        <!-- Botón de guardar -->
-                        <p:outputPanel styleClass="control-group">
-                            <p:outputPanel styleClass="float-right">
-                                <p:commandButton id="btnGuardar" value="#{msg.enviarSolicitud}"
-                                                 action="#" update="@form" styleClass="btn btn-primary" />
+                <f:facet name="header">
+                    <p:outputPanel id="pnlHeaderTabla" styleClass="row">
+                        <p:outputPanel styleClass="col-md-6">
+                            <h3>
+                                <h:outputText value="#{msg.resultadoBusqueda}" />
+                                <h:outputText styleClass="cantidad"
+                                              value="#{marginacionesBean.totalResultados} #{msg.elementos}" />
+                            </h3>
+                        </p:outputPanel>
+                        <p:outputPanel styleClass="col-md-6">
+                            <p:outputPanel styleClass="form-inline float-right panel-exportar">
+                                <h:commandLink value="Exportar" styleClass="btn btn-link my-1">
+                                    <p:dataExporter type="csv" target="basicDT" fileName="incorporacion"
+                                                    pageOnly="false" />
+                                </h:commandLink>
                             </p:outputPanel>
                         </p:outputPanel>
-                        <!-- <p:blockUI block="@form" trigger="btnGuardar" />
-                        <p:defaultCommand target="btnGuardar" scope="itemDetail" /> -->
                     </p:outputPanel>
-                </h:panelGroup>
-            </p:outputPanel>
-        </p:fieldset>
+                </f:facet>
 
-        <h:panelGroup styleClass="volverLink" layout="block">
-            <p:commandLink value="#{msg.volver}" onclick="history.go(-1)" styleClass="btn btn-link" />
-        </h:panelGroup>
+                <p:column headerText="#{msg.hdui}" sortBy="#{elem.incDui}">
+                    <h:outputText value="\'" style="visibility: hidden;" />
+                    <h:outputText value="#{elem.incDui}" />
+                </p:column>
+                <p:column headerText="#{msg.hprimerNombre}" sortBy="#{elem.incPrimerNombre}">
+                    <h:outputText value="#{elem.incPrimerNombre}" />
+                </p:column>
+                <p:column headerText="#{msg.hsegundoNombre}" sortBy="#{elem.incSegundoNombre}">
+                    <h:outputText value="#{elem.incSegundoNombre}" />
+                </p:column>
+                <p:column headerText="#{msg.hprimerApellido}" sortBy="#{elem.incPrimerApellido}">
+                    <h:outputText value="#{elem.incPrimerApellido}" />
+                </p:column>
+                <p:column headerText="#{msg.hsegundoApellido}" sortBy="#{elem.incSegundoApellido}">
+                    <h:outputText value="#{elem.incSegundoApellido}" />
+                </p:column>
+                <p:column headerText="#{msg.estadoMarginacion}" sortBy="#{elem.estadoMarginacion}">
+                    <h:outputText value="#{elem.estadoMarginacion}" />
+                </p:column>
+                <p:column styleClass="columnaAcciones" exportable="false">
+                    <p:link outcome="#{ConstantesPaginas.MARGINACION}" title="#{msg.ver}" styleClass="btn btn-icono">
+                        <h:outputText styleClass="glyphicon glyphicon-eye-open" />
+                        <f:param name="id" value="#{elem.incPk}" />
+                        <f:param name="edit" value="false" />
+                    </p:link>
+                </p:column>
+                <p:column styleClass="columnaAcciones" exportable="false"
+                          rendered="#{sessionBean.operaciones.contains(ConstantesOperaciones.ACTUALIZAR_INCORPORACIONES)}">
+                    <p:link outcome="#{ConstantesPaginas.INCORPORACION}" title="#{msg.editar}"
+                            styleClass="btn btn-icono">
+                        <h:outputText styleClass="glyphicon glyphicon-pencil" />
+                        <f:param name="id" value="#{elem.incPk}" />
+                        <f:param name="edit" value="true" />
+                    </p:link>
+                </p:column>
+                <p:column styleClass="columnaAcciones" exportable="false">
+                    <p:commandButton oncomplete="PF('confirmDialog').show()" icon="glyphicon glyphicon-trash "
+                                     styleClass="btn btn-icono rojo" title="#{msg.eliminar}"
+                                     action="#{marginacionesBean.actualizar(elem)}" />
+                </p:column>
+            </p:dataTable>
+        </p:outputPanel>
+
     </h:form>
+
 </ui:composition>

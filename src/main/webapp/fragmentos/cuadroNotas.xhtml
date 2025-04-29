@@ -19,6 +19,16 @@
                 <h:outputText value="#{msg.cuadroNotas}" />
             </h2>
 
+            <p:outputPanel styleClass="float-right">
+                <p:link outcome="#{ConstantesPaginas.REGISTRO_NOTAS}" title="#{msg.nuevoCuadroNotas}"
+                        styleClass="btn btn-secondary"
+                        >
+                    <h:outputText styleClass="glyphicon glyphicon-plus" />
+                    <h:outputText styleClass="" value="#{msg.nuevoCuadroNotas}" />
+                    <f:param name="edit" value="true" />
+                </p:link>
+            </p:outputPanel>
+           
             <div class="lineaHeader">
                 <div class="verde"></div><div class="amarillo"></div><div class="rojo"></div><div class="celeste"></div>
             </div>
@@ -63,7 +73,7 @@
                                          value="#{cuadroDeNotasBean.filtro.centroEscolar}" />
                         </p:outputPanel>
                     </p:outputPanel>    
-                     <p:outputPanel styleClass="form-group row">
+                    <p:outputPanel styleClass="form-group row">
                         <h:outputLabel value="#{msg.anio}" for="b_anio" styleClass="col-sm-3 col-form-label"/>
                         <p:outputPanel styleClass="col-sm-9">
                             <h:inputText autocomplete="off" styleClass="form-control" id="b_anio"

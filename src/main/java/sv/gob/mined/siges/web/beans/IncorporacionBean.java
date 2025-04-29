@@ -57,9 +57,13 @@ public class IncorporacionBean implements Serializable {
     private List<SgDepartamento> listaDepartamentos;
     private List<SgDocumento> documentosSeleccionados = new ArrayList<>();
     private List<SgDocumento> documentosDeIncorporacion = new ArrayList<>();
+    private boolean modoEdicionAdmin;
+
 
     @PostConstruct
     public void init() {
+        this.modoEdicionAdmin = true;
+
         documentosDeIncorporacion = new ArrayList<>();
         documentosDeIncorporacion.add(new SgDocumento(1L, "Título de Educación Media", "PDF"));
         documentosDeIncorporacion.add(new SgDocumento(2L, "Certificados de Educación Media", "PDF"));
@@ -336,6 +340,14 @@ public class IncorporacionBean implements Serializable {
 
     public void setDocumentosDeIncorporacion(List<SgDocumento> documentosDeIncorporacion) {
         this.documentosDeIncorporacion = documentosDeIncorporacion;
+    }
+
+    public boolean isModoEdicionAdmin() {
+        return modoEdicionAdmin;
+    }
+
+    public void setModoEdicionAdmin(boolean modoEdicionAdmin) {
+        this.modoEdicionAdmin = modoEdicionAdmin;
     }
 
 }

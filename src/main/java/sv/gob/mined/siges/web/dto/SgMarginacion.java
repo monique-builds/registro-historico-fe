@@ -13,7 +13,7 @@ import java.util.List;
  */
 /**
  *
- * @author tiffa
+ * @author monique-builds 
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = SgMarginacion.class)
 public class SgMarginacion implements Serializable {
@@ -22,12 +22,34 @@ public class SgMarginacion implements Serializable {
     private Long id;
     private String nombresSolicitante;
     private String apellidosSolicitante;
-    private Date fechaRecepcion;
     private String correoElectronico;
     private String telefono;
-    private String domicilio;
+    private Date fechaRecepcion;
     private String nombreSegunPartidaMarginada;
     private String nombreSegunDocumentoAcademico;
+    private String domicilio;
+
+    //Datos ingresados por funcionario;
+    private String dui;
+    private String documentoAMarginar;
+    private String datosDelDocumentoAMarginar;
+    private String centroEducativo;
+    private String datosDePartidaDeNacimiento;
+    private String alcaldiaMunicipal;
+    private String anioPartidaNacimiento;
+    private String nombreCorrecto;
+    private Date fechaExtensionPartidaNacimiento;
+    private Date fechaMarginacion;  //Marginación por fecha de marginación
+    private Date fechaAcuerdo;
+    private Date fechaResolucion;
+    private String observaciones;
+
+    //Datos sistema
+    private String numeroReferencia;
+    private String elaborado;
+
+   //Estado de la solicitud
+   private String estadoSolicitud; //pendiente, en revision, aprovada, rechazada, cancelada
 
     private List<SgDocumento> documentos;
 
@@ -127,5 +149,135 @@ public class SgMarginacion implements Serializable {
     public void setNombreSegunDocumentoAcademico(String nombreSegunDocumentoAcademico) {
         this.nombreSegunDocumentoAcademico = nombreSegunDocumentoAcademico;
     }
+
+    public String getDui() {
+        return dui;
+    }
+
+    public void setDui(String dui) {
+        this.dui = dui;
+    }
+
+    public String getDocumentoAMarginar() {
+        return documentoAMarginar;
+    }
+
+    public void setDocumentoAMarginar(String documentoAMarginar) {
+        this.documentoAMarginar = documentoAMarginar;
+    }
+
+    public String getDatosDelDocumentoAMarginar() {
+        return datosDelDocumentoAMarginar;
+    }
+
+    public void setDatosDelDocumentoAMarginar(String datosDelDocumentoAMarginar) {
+        this.datosDelDocumentoAMarginar = datosDelDocumentoAMarginar;
+    }
+
+    public String getCentroEducativo() {
+        return centroEducativo;
+    }
+
+    public void setCentroEducativo(String centroEducativo) {
+        this.centroEducativo = centroEducativo;
+    }
+
+    public String getDatosDePartidaDeNacimiento() {
+        return datosDePartidaDeNacimiento;
+    }
+
+    public void setDatosDePartidaDeNacimiento(String datosDePartidaDeNacimiento) {
+        this.datosDePartidaDeNacimiento = datosDePartidaDeNacimiento;
+    }
+
+    public String getAlcaldiaMunicipal() {
+        return alcaldiaMunicipal;
+    }
+
+    public void setAlcaldiaMunicipal(String alcaldiaMunicipal) {
+        this.alcaldiaMunicipal = alcaldiaMunicipal;
+    }
+
+    public String getAnioPartidaNacimiento() {
+        return anioPartidaNacimiento;
+    }
+
+    public void setAnioPartidaNacimiento(String anioPartidaNacimiento) {
+        this.anioPartidaNacimiento = anioPartidaNacimiento;
+    }
+
+    public String getNombreCorrecto() {
+        return nombreCorrecto;
+    }
+
+    public void setNombreCorrecto(String nombreCorrecto) {
+        this.nombreCorrecto = nombreCorrecto;
+    }
+
+    public Date getFechaExtensionPartidaNacimiento() {
+        return fechaExtensionPartidaNacimiento;
+    }
+
+    public void setFechaExtensionPartidaNacimiento(Date fechaExtensionPartidaNacimiento) {
+        this.fechaExtensionPartidaNacimiento = fechaExtensionPartidaNacimiento;
+    }
+
+    public Date getFechaMarginacion() {
+        return fechaMarginacion;
+    }
+
+    public void setFechaMarginacion(Date fechaMarginacion) {
+        this.fechaMarginacion = fechaMarginacion;
+    }
+
+    public Date getFechaAcuerdo() {
+        return fechaAcuerdo;
+    }
+
+    public void setFechaAcuerdo(Date fechaAcuerdo) {
+        this.fechaAcuerdo = fechaAcuerdo;
+    }
+
+    public Date getFechaResolucion() {
+        return fechaResolucion;
+    }
+
+    public void setFechaResolucion(Date fechaResolucion) {
+        this.fechaResolucion = fechaResolucion;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getNumeroReferencia() {
+        return numeroReferencia;
+    }
+
+    public void setNumeroReferencia(String numeroReferencia) {
+        this.numeroReferencia = numeroReferencia;
+    }
+
+    public String getElaborado() {
+        return elaborado;
+    }
+
+    public void setElaborado(String elaborado) {
+        this.elaborado = elaborado;
+    }
+
+    public String getEstadoSolicitud() {
+        return estadoSolicitud;
+    }
+
+    public void setEstadoSolicitud(String estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
+    }
+
+
 
 }
